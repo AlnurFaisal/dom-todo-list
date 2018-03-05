@@ -4,7 +4,7 @@ var item;
 var counter = 0;
 var todoList = document.getElementById("todo-list");
 var form = document.getElementsByTagName("form")[0];
-var addlist = document.getElementById("addlist");
+//var addlist = document.getElementById("addlist");
 
 
 for (var i = 0; i < tasks.length; i++) {
@@ -27,7 +27,7 @@ todoList.addEventListener("click", function(e){
 
 form.addEventListener("submit", function(e){
    e.preventDefault();
-   item = addlist.value;
+   item = form.elements['addlist'].value;
    tasks.push(item);
    list = document.createElement("li");
    list.textContent = tasks[tasks.length - 1];
