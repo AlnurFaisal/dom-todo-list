@@ -1,23 +1,24 @@
 var tasks = ["buy milk", "eat dinner", "nail javascript"];
-var list;
-var item;
-var counter = 0;
+var list, item, mylist;
 var todoList = document.getElementById("todo-list");
 var form = document.getElementsByTagName("form")[0];
-//var addlist = document.getElementById("addlist");
 
-
-for (var i = 0; i < tasks.length; i++) {
+function addList(index){
     list = document.createElement("li");
-    list.textContent = tasks[i];
-    list.id = "list" + counter;
-    counter++;
+    list.textContent = tasks[index];
+    list.id = "list" + index;
+    list.style = "cursor: pointer;";
     todoList.appendChild(list);
 }
 
 
+for (var i = 0; i < tasks.length; i++) {
+    addList(i);
+}
+
+
 todoList.addEventListener("click", function(e){
-    var mylist = document.getElementById(e.target.id);     
+    mylist = document.getElementById(e.target.id);     
     if(!mylist.classList.contains("done")){
         mylist.classList.add("done");
     } else {
@@ -29,11 +30,9 @@ form.addEventListener("submit", function(e){
    e.preventDefault();
    item = form.elements['addlist'].value;
    tasks.push(item);
-   list = document.createElement("li");
-   list.textContent = tasks[tasks.length - 1];
-   list.id = "list" + counter;
-   todoList.appendChild(list);
-   counter++;
+   addList(tasks.length - 1);
+   var listitem = document.getElementById("addlist");
+   listitem.value = "";
 });
 
 
